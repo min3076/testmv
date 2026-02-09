@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+body {
+  background-color: lightblue;
+}
+
+h1 {
+  color: white;
+  text-align: center;
+}
+
+p {
+  font-family: verdana;
+  font-size: 20px;
+}
+</style>
+</head>
+<body>
+<video id="popupVideo" controls preload="metadata">
+  <source src="FOODIE_1711442727.MP4" type="video/mp4">
+</video>
+
+<script>
+function openVideoPopup() {
+  // 팝업(모달) 열기 로직...
+
+  var video = document.getElementById('popupVideo');
+  if (!video) return;
+
+  // ✅ HTML5 video 미지원 (IE8 이하)
+  if (!document.createElement('video').canPlayType) {
+    var wrap = document.getElementById('videoWrap');
+    if (wrap) {
+      wrap.innerHTML =
+        '<p>이 브라우저에서는 동영상 재생이 지원되지 않습니다.<br>' +
+        '최신 브라우저를 이용하거나 <a href="/media/promo.mp4">파일 다운로드</a>를 이용해 주세요.</p>';
+    }
+    return;
+  }
+
+  // IE9~11 / 최신 브라우저
+  try {
+    video.play(); // 실패해도 무시
+  } catch (e) {}
+}
+</script>
+
+</body>
+</html>
+
+
